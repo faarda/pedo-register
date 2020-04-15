@@ -1,38 +1,56 @@
 <template>
-    <div class="card">
-        <div class="card__body">
-            <div class="card__body__img">
-                <img src="https://i.pinimg.com/170x/b2/a4/cd/b2a4cd996937f47862bf0aca69442c2e.jpg" alt="">
-            </div>
-            <div class="card__body__content">
-                <h4 class="name">John Does</h4>
-            </div>
-
-            <div class="card__body__border">
-                <div class="card__body__border__item"></div>
-                <div class="card__body__border__item"></div>
-                <div class="card__body__border__item"></div>
-                <div class="card__body__border__item"></div>
-                <div class="card__body__border__item"></div>
-                <div class="card__body__border__item"></div>
-                <div class="card__body__border__item"></div>
-                <div class="card__body__border__item"></div>
-                <div class="card__body__border__item"></div>
-                <div class="card__body__border__item"></div>
-                <div class="card__body__border__item"></div>
-                <div class="card__body__border__item"></div>
-            </div>
+<div class="card">
+    <div class="card__body">
+        <div class="card__body__img" @click="$emit('show-image', pedo.picture)">
+            <img :src="image" alt="">
+        </div>
+        <div class="card__body__content">
+            <h4 class="name" @click="visitTwitter(pedo.name)">{{pedo.name}}</h4>
         </div>
 
-        <div class="card__image">
-            <img src="https://via.placeholder.com/900x500.png" alt="">
+        <div class="card__body__border">
+            <div class="card__body__border__item"></div>
+            <div class="card__body__border__item"></div>
+            <div class="card__body__border__item"></div>
+            <div class="card__body__border__item"></div>
+            <div class="card__body__border__item"></div>
+            <div class="card__body__border__item"></div>
+            <div class="card__body__border__item"></div>
+            <div class="card__body__border__item"></div>
+            <div class="card__body__border__item"></div>
+            <div class="card__body__border__item"></div>
+            <div class="card__body__border__item"></div>
+            <div class="card__body__border__item"></div>
         </div>
     </div>
+
+    <div class="card__image">
+        <img :src="pedo.comment" alt="" @click="$emit('show-image', pedo.comment)">
+    </div>
+</div>
 </template>
 
 <script>
 export default {
+    name: "pedo",
+    props: {
+        pedo: {
+            type: Object,
+            required: true
+        }
+    },
+    computed: {
+        image() {
+            return this.pedo.picture ? this.pedo.picture : `https://i.pinimg.com/170x/b2/a4/cd/b2a4cd996937f47862bf0aca69442c2e.jpg`;
+        }
+    },
+    methods: {
+        visitTwitter(name){
+            let handle = name.replace("@", "");
 
+            window.open(`https://twitter.com/${handle}`, '_blank');
+        }
+    }
 }
 </script>
 
@@ -42,30 +60,34 @@ export default {
     width: 100%;
     height: 18vw;
     margin-bottom: 20px;
-    /* margin-bottom: calc(20% + 20px); */ 
+    /* margin-bottom: calc(20% + 20px); */
     /* transition: margin-bottom 0s; */
 }
 
 @media screen and (max-width: 1349px) {
-    .card{
+    .card {
         height: 27vw;
     }
 }
 
 @media screen and (max-width: 912px) {
-    .card{
-        height: 55vw;
+    .card {
+        height: 52vw;
     }
 }
 
 @media screen and (max-width: 640px) {
-    .card{
+    .card {
         height: 60vw;
+    }
+
+    .card__body {
+        padding-bottom: 55% !important;
     }
 }
 
 @media screen and (max-width: 600px) {
-    .card{
+    .card {
         height: 67vw;
     }
 }
@@ -78,6 +100,8 @@ export default {
     right: 15px;
     border-radius: 10px;
     overflow: hidden;
+    border: solid 1px #ccc;
+    cursor: pointer;
 }
 
 .card__image img {
@@ -98,7 +122,7 @@ export default {
     overflow: hidden;
     cursor: pointer;
     padding: 15px;
-    padding-bottom: 40%;
+    padding-bottom: 36%;
     display: flex;
     transition: 1s all ease;
 }
@@ -125,7 +149,7 @@ export default {
     margin-top: 5px;
 }
 
-.card__body:hover{
+.card__body:hover {
     padding-bottom: 56%;
 }
 

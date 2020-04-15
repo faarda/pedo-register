@@ -8,13 +8,27 @@
       <div class="header__end">
         <a href="" class="btn">Donate</a>
         <div class="github">
-          <a target="_blank" href="https://github.com/faarda/Nigerian-senators-contacts">
+          <a target="_blank" href="https://github.com/faarda/pedo-register">
             <img src="@/assets/github.png" alt="">
           </a>
         </div>
       </div>
     </header>
-    <router-view/>
+    <div class="design design--top">
+      <img src="@/assets/yellow.png" alt="">
+    </div>
+        <div class="design design--bottom">
+      <img src="@/assets/blue.png" alt="">
+    </div>
+    <div style="min-height: 80vh">
+
+      <router-view/>
+    </div>
+    <footer class="footer">
+      <span class="copy">This platform was funded and developed by a coalition of tech bro’s who are against the sexual exploitation of minors and violence against women, sexual or otherwise.</span>
+
+      <b>Developed by <a href="https://twitter.com/silasadedoyin">Silas</a></b>
+    </footer>
   </div>
 </template>
 
@@ -47,6 +61,32 @@ export default {
   body{
     font-family: 'Lato', sans-serif;
     color: #001F3F;
+    position: relative;
+  }
+  
+  .design{
+    position: fixed;
+    z-index: -1;
+    width: 200px;
+    height: 200px;
+  }
+
+  .design--top{
+        top: 20px;
+    right: 0;
+    transform: translateX(30%);
+  }
+
+    .design--bottom{
+        bottom: 20px;
+    left: 0;
+    transform: translateX(-30%);
+  }
+
+  .design img{
+    width: 100%;
+    opacity: 0.4;
+    /* display: none; */
   }
 
   .header{
@@ -106,5 +146,31 @@ export default {
 
   .github img{
     width: 100%;
+  }
+
+  .footer{
+    margin-top: 50px;
+    padding: 25px 35px;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  @media screen and (max-width: 750px){
+      .footer{
+        flex-direction: column;
+      }
+
+      .footer .copy{
+        text-align: center;
+        margin-bottom: 15px;
+        margin-right: 0;
+      }
+  }
+
+  .footer .copy{
+    max-width: 800px;
+    margin-right: 30px;
   }
 </style>
